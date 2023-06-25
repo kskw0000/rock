@@ -78,10 +78,6 @@ app.post('/login', async (req, res) => {
       });
     }
   });
-} catch (err) {
-  console.error('Error getting profile:', err);
-  res.status(500).send(err.message);
-}
 });
 
 // ガチャエンドポイント

@@ -40,7 +40,7 @@ const Clown = () => {
       const accessToken = '...'; // 実際にはユーザーがログインして取得したアクセストークンを使用します。
 
       // アクセストークンを使ってガチャAPIを呼び出します。
-      const response = await axios.post('https://rock-server.onrender.com/gacha', {
+      const response = await axios.post('http://localhost:3000/gacha', {
         accessToken: accessToken
       });
 

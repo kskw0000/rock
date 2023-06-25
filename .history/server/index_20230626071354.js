@@ -47,16 +47,16 @@ app.listen(3000, () => {
 app.post('/login', async (req, res) => {
   const accessToken = req.body.accessToken;
 
-  
-  // LINE APIを呼び出してユーザー情報を取得します
+  // LINEからユーザー名を取得します
+  let name;
   try {
-    const response = await axios.get('https://api.line.me/v2/profile', {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    });
-    const { userId, displayName: name } = response.data;
-
+    const profile = await client.getProfile(userId);
+    name = profile.displayName;
+  } catch (err) {
+    console.error('Error getting profile:', err);
+    res.status(500).send(err.message);
+    return;
+  }
 
   // データベースからユーザー情報を取得します
   db.get("SELECT * FROM users WHERE id = ?", [userId], (err, row) => {
@@ -78,10 +78,6 @@ app.post('/login', async (req, res) => {
       });
     }
   });
-} catch (err) {
-  console.error('Error getting profile:', err);
-  res.status(500).send(err.message);
-}
 });
 
 // ガチャエンドポイント
