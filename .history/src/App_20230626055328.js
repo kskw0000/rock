@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   const handleGacha = () => {
-    axios.post(`${process.env.REACT_APP_API_URL}/gacha`, { userId: userId })
+    axios.post(`${process.env.REACT_APP_API_URL}/gacha`', { userId: userId })
       .then(response => {
         console.log(response.data);
         setGachaCount(response.data.gachaCount);
