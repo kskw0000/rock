@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   const handleGacha = () => {
-    axios.post('https://rock-server.onrender.com/gacha', { userId: userId })
+    axios.post('/gacha', { userId: userId })
       .then(response => {
         console.log(response.data);
         setGachaCount(response.data.gachaCount);
