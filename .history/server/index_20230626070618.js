@@ -12,7 +12,7 @@ db.serialize(() => {
 
 const config = {
   channelAccessToken: 'zV5sYFTbQ61zF9+ySdcYh+jd3disZ/DyU2fxyTOGSG44uPl8d6SZyaqsGdF5V17Q8TMrDDjdUEBylSYpifUvJUsloGz2m3MI1kG6nOMWCds5OlLAJ6dV14Wi4OXGjSgfxPanDYImzdnKF13l1ysjkQdB04t89/1O/w1cDnyilFU=', 
-  channelSecret: '13df6e5457d0ef1e9e2097dc4ea1701e', 
+  channelSecret: 'Your-channelSecret', 
 };
 
 const app = express();
