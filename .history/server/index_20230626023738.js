@@ -39,8 +39,8 @@ function handleEvent(event) {
   return client.replyMessage(event.replyToken, echo);
 }
 
-app.listen(3000, () => {
-  console.log(`Server is running at :3000`);
+app.listen(port, () => {
+  console.log(`Server is running at :${port}`);
 });
 
 // ユーザーログインエンドポイント
@@ -70,49 +70,6 @@ app.post('/login', (req, res) => {
           res.json({ id: userId, gachaCount, points });
         }
       });
-    }
-  });
-});
-
-// サーバーサイドコード（index.js）
-
-// ガチャエンドポイント
-app.post('/gacha', (req, res) => {
-  const { userId } = req.body;
-
-  db.get("SELECT * FROM users WHERE id = ?", [userId], (err, row) => {
-    if (err) {
-      console.error(err.message);
-      res.status(500).send(err.message);
-    } else if (row) {
-      let newGachaCount = row.gachaCount + 1;
-      let newPoints = row.points;
-
-      // 最初の3回は無料で、4回目以降はポイントが必要
-      if (newGachaCount <= 3) {
-        db.run("UPDATE users SET gachaCount = ? WHERE id = ?", [newGachaCount, userId], (err) => {
-          if (err) {
-            console.error(err.message);
-            res.status(500).send(err.message);
-          } else {
-            res.json({ id: userId, gachaCount: newGachaCount, points: newPoints });
-          }
-        });
-      } else if (newPoints > 0) { // 4回目以降はポイントが必要
-        newPoints--; // ポイントを1減らします
-        db.run("UPDATE users SET gachaCount = ?, points = ? WHERE id = ?", [newGachaCount, newPoints, userId], (err) => {
-          if (err) {
-            console.error(err.message);
-            res.status(500).send(err.message);
-          } else {
-            res.json({ id: userId, gachaCount: newGachaCount, points: newPoints });
-          }
-        });
-      } else {
-        res.status(400).send("Not enough points");
-      }
-    } else {
-      res.status(404).send("User not found");
     }
   });
 });

@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 import liff from '@line/liff';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Clown from './components/Clown';
-import Prize from './components/Prize';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -59,19 +56,7 @@ function App() {
       <div>Gacha Count: {gachaCount}</div> {/* ガチャの回数を表示 */}
       <div>Points: {points}</div> {/* ユーザーのポイントを表示 */}
       <button onClick={handleGacha}>Play Gacha</button> {/* ガチャを回すためのボタンを追加 */}
-      <Router>
-        <main style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flex: '1',
-        }}>
-            <Routes>
-              <Route path="/" element={<Clown userId={userId} />} />
-              <Route path="/prize" element={<Prize />} />
-            </Routes>
-        </main>
-      </Router>
+      
       <Footer />
     </div>
   );

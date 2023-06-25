@@ -4,8 +4,8 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Clown from './components/Clown';
 import Prize from './components/Prize';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from '../../ww/tsfff/clown-app/src/components/Header';
+import Footer from '../../ww/tsfff/clown-app/src/components/Footer';
 
 function App() {
   const [userId, setUserId] = useState(null);

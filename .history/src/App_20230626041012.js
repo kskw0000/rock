@@ -59,19 +59,7 @@ function App() {
       <div>Gacha Count: {gachaCount}</div> {/* ガチャの回数を表示 */}
       <div>Points: {points}</div> {/* ユーザーのポイントを表示 */}
       <button onClick={handleGacha}>Play Gacha</button> {/* ガチャを回すためのボタンを追加 */}
-      <Router>
-        <main style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flex: '1',
-        }}>
-            <Routes>
-              <Route path="/" element={<Clown userId={userId} />} />
-              <Route path="/prize" element={<Prize />} />
-            </Routes>
-        </main>
-      </Router>
+      
       <Footer />
     </div>
   );
